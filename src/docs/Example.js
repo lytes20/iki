@@ -30,7 +30,7 @@ class Example extends React.Component {
             {showCode ? 'Hide' : 'Show'} Code
           </a>
         </p>
-        {showCode && { code }}
+        {showCode && code}
       </div>
     );
   }
