@@ -21,6 +21,8 @@
     "babel-preset-react-app": "^9.1.2",
     "camelcase": "^5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "chalk": "^4.0.0",
+    "chokidar": "^3.4.0",
     "css-loader": "3.4.2",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
@@ -48,9 +50,11 @@
     "postcss-normalize": "8.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
+    "react-docgen": "^5.3.0",
     "react-dom": "^16.13.1",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.1",
@@ -67,7 +71,11 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "prestart": "npm run gen:docs",
+    "start": "npm-run-all --parallel start:docs gen:docs-watch",
+    "start:docs": "node scripts/start.js",
+    "gen:docs": "node scripts/generateComponentData.js",
+    "gen:docs-watch": "npm run gen:docs -- --watch",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -140,5 +148,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }
